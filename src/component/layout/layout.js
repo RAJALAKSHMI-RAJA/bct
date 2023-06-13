@@ -23,7 +23,7 @@ const Layout = () => {
         </div>
 
         <div className={css.header}>
-          {/* <span>{moment().format("dddd, Do MMM YYYY")}</span> */}
+         
 
           <div className={css.searchBar}>
             <BiSearch size={20} />
