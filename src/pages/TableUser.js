@@ -1,31 +1,21 @@
 import React from "react"
 import "./TableUser.css"
-import {BiAddToQueue} from "react-icons/bi"
 import {AiFillEdit} from "react-icons/ai"
-import {AiFillDelete}  from "react-icons/ai"
+import FormDialog from "./AddUser"
+import Delete from "./Delete"
+
 
 const UserTable = (props) => {
-  const { handleClickOpen } = props
+  const { handleClickOpen , addUser , deleteUser } = props
+
+ 
+ 
   return (
     <>
       <div className="header-tools">
         <div className="tools">
           <ul>
-            <li>
-              <button>
-                <i className="material-icons"><BiAddToQueue/></i>
-              </button>
-            </li>
-            <li>
-              <button>
-                <i className="material-icons"><AiFillEdit/></i>
-              </button>
-            </li>
-            <li>
-              <button>
-                <i className="material-icons"><AiFillDelete/></i>
-              </button>
-            </li>
+            <li><FormDialog addUser={addUser}/></li>
           </ul>
         </div>
 
@@ -34,6 +24,7 @@ const UserTable = (props) => {
             type="search"
             className="search-input"
             placeholder="Search..."
+            onChange={(e)=>props.handleFilter(e)}
           />
         </div>
       </div>
@@ -48,13 +39,14 @@ const UserTable = (props) => {
             <th>Email</th>
             <th>dob</th>
             <th>Age</th>
+            <th>Actions</th>
           </tr>
         </thead>
         {props.users.length > 0 ? (
           <tbody>
             {props.users.map((user) => (
-              <tr key={user.id} onClick={() => handleClickOpen(user)}>
-                <td>
+              <tr key={user.id} >
+                <td onClick={() => handleClickOpen(user)}>
                   <div className="image-container">
                     <img
                       src={user.imageUrl}
@@ -63,12 +55,13 @@ const UserTable = (props) => {
                     />
                   </div>
                 </td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{user.contactNumber}</td>
-                <td>{user.email}</td>
-                <td>{user.dob}</td>
-                <td>{user.age}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.firstName}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.lastName}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.contactNumber}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.email}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.dob}</td>
+                <td onClick={() => handleClickOpen(user)}>{user.age}</td>
+                <td><Delete id={user.id} deleteUser={deleteUser}/></td>
               </tr>
             ))}
           </tbody>

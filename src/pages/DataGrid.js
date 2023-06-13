@@ -18,6 +18,7 @@ const DataGrid = () => {
   const [noOfRecords, setNoOfRecords] = useState(3)
   const [users, setUsers] = useState([])
   const [selectedUser, setSelectedUser] = useState({})
+  const[records,setRecords]=useState(users)
   const [open, setOpen] = useState(false)
   const handleClickOpen = (selectedUserData) => {
     setSelectedUser(selectedUserData)
@@ -27,6 +28,27 @@ const DataGrid = () => {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const addUser=(user)=>
+  {
+    user.id=users.length +1;
+    setUsers([...users,user]);
+  };
+
+  const handleFilter=(e)=>
+  {
+    let filterData=users.filter((user=>
+      {
+        return user.firstName.toLowerCase().includes(e.target.value);
+      }))
+      setUsers (filterData);
+  }
+
+  const deleteUser=(id)=>
+  {
+    setUsers(users.filter((user)=>user.id !==id));
+  }
+
   useEffect(() => {
     fetchUsers()
   }, [noOfRecords, page])
@@ -49,7 +71,7 @@ const DataGrid = () => {
   }
   return (
     <div className="datatable-container">
-      <TableUser users={users} handleClickOpen={handleClickOpen} />
+      <TableUser users={users} handleClickOpen={handleClickOpen} addUser={addUser} deleteUser={deleteUser} handleFilter={handleFilter}/>
       <div
         style={{
           display: "flex",
