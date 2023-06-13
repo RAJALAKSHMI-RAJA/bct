@@ -18,7 +18,7 @@ const DataGrid = () => {
   const [noOfRecords, setNoOfRecords] = useState(3)
   const [users, setUsers] = useState([])
   const [selectedUser, setSelectedUser] = useState({})
-  const[records,setRecords]=useState(users)
+  
   const [open, setOpen] = useState(false)
   const handleClickOpen = (selectedUserData) => {
     setSelectedUser(selectedUserData)
@@ -43,6 +43,8 @@ const DataGrid = () => {
       }))
       setUsers (filterData);
   }
+
+ 
 
   const deleteUser=(id)=>
   {

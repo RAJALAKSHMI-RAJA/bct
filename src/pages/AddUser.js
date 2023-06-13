@@ -79,7 +79,7 @@ export default function FormDialog(props) {
             onChange={handleInput}
             id="name"
             label="Contact Number"
-            name='constactNumber'
+            name='contactNumber'
             value={user.contactNumber}
             type="number"
             fullWidth
@@ -103,8 +103,8 @@ export default function FormDialog(props) {
             margin="dense"
             onChange={handleInput}
             id="name"
-            label="DOB"
-            type="number"
+            
+            type="date"
             fullWidth
             name='dob'
             value={user.dob}
